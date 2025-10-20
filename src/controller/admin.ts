@@ -55,8 +55,8 @@ export async function register(
 
 export async function sendOTP(req: Request, res: Response) {
   const email = req.params.email;
-  const emailSender = process.env.GOOGLE_MAIL;
-  const emailPassword = process.env.GOOGLE_PASSWORD;
+  const emailSender = process.env.EMAIL_USER;
+  const emailPassword = process.env.EMAIL_PASS;
 
   try {
     const isAdminActive = await prisma.admin.findFirst({
@@ -112,8 +112,10 @@ export function resetOTP(req: Request, res: Response) {
 export async function verification(req: Request, res: Response) {
   const email = req.params.email;
   const inputOTP = String(req.body.otp ?? "");
+  console.log(email);
 
   const otpData = otpStorage.get(email);
+  console.log(otpData);
   if (!otpData)
     return res.status(400).send({ valid: false, message: "OTP not found" });
 

@@ -1,7 +1,11 @@
 // src/server.ts
+import dotenv from "dotenv";
+dotenv.config();
+
 import express, { Request, Response, NextFunction } from "express";
 import bodyParser from "body-parser";
 import cors from "cors";
+import path from "path";
 import router from "./routes";
 import { PrismaClient } from "@prisma/client";
 
@@ -15,6 +19,10 @@ async function serverConnection() {
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: true }));
     app.use(cors());
+
+    // Static file serving untuk folder uploads
+    app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
+
     app.use("/api", router);
 
     // Error handler harus 4 argumen: (err, req, res, next)

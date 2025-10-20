@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,22 +8,26 @@ datasource db {
 }
 
 model Mahasiswa {
-  nim           Int @id @default(autoincrement())
+  nim           Int       @id @default(autoincrement())
   name          String
-  asal          String
   email         String
   phone_number  String
   fakultas      String
   jurusan       String
-  date_of_birth DateTime
   gender        String
   image         String
+  subdistrict   String?
+  birth         DateTime?
+  city          String?
+  created_at    DateTime  @default(now())
+  district      String?
+  province      String?
 }
 
 model Admin {
-  id Int @id @default(autoincrement())
-  username      String @unique
-  email         String @unique
-  password      String
-  status        Int @default(0)
+  id       Int    @id @default(autoincrement())
+  username String @unique
+  email    String @unique
+  password String
+  status   Int    @default(0)
 }

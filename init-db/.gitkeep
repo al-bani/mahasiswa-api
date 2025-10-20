@@ -1,0 +1,2 @@
+# Directory untuk file-file SQL initialization database
+# File SQL di sini akan dijalankan saat container PostgreSQL pertama kali dibuat

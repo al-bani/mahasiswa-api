@@ -12,7 +12,7 @@ const adminRouter = Router();
 mhsRouter.post("/filter", Mhs.filterMhs);
 mhsRouter.get("/search", Mhs.searchMhs);
 mhsRouter.post("/all", Mhs.getAll);
-
+mhsRouter.get("/dashboard", Mhs.dashboardMhs);
 mhsRouter.get("/:nim", Mhs.getMhs);
 mhsRouter.post("/create", Mhs.createMhs);
 
@@ -29,6 +29,9 @@ mhsRouter.put(
 mhsRouter.delete("/delete/:nim", Mhs.deleteMhs);
 
 mhsRouter.post("/upload/image", upload.single("image"), Mhs.uploadImage);
+
+// Cache management routes
+mhsRouter.delete("/cache/dashboard", Mhs.clearDashboardCache);
 
 // --- Admin ---
 adminRouter.post("/register", Admin.register);
